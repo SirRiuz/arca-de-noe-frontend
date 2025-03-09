@@ -16,6 +16,7 @@ import Stack from "@mui/material/Stack";
 import MuiAlert from "@mui/material/Alert";
 import Slide from "@mui/material/Slide";
 import { useNavigate } from "react-router-dom";
+import { red } from "@mui/material/colors";
 
 const darkTheme = createTheme({
     palette: {
@@ -29,18 +30,16 @@ const boxstyle ={
     top:"50%",
     left:"50%",
     transform:"translate(-50%, -50%)",
-    width:"75%",
-    height:"80%",
-    bgcolor:"background.paper",
+    width:"99vw",
+    height:"99vh",
+    bgcolor:"#E9E9E",
     boxShadow:24,
     borderRadius: "20px",
 
 }
 
 const center = {
-    position: "relative",
-    top: "50%",
-    left: "37%",
+    textAlign:'center'
 };
 
 
@@ -48,45 +47,50 @@ const center = {
 export default function Register() {
     return(
         <>
+        {/* contenedor rosado */}
         <div style={{
-            backgroundColor:"violet",
+            backgroundColor:"#E9E9E9",
             backgroundImage:"cover",
             height: "100vh",
-            color:"black",
+            
         }}
         >
             <Box sx={boxstyle}>
+
                 {/* Imagen de los perritos */}
                 <Grid container>
-                    <Grid item xs={12} sm={12} lg={6}>
-                        <Box 
+                    <Grid item xs={12} sm={12} lg={6} >
+                        <Box
                         style={{
                             backgroundImage:`url(${bg})`,
                             backgroundSize:"cover",
-                            marginTop:"5px",
-                            marginBottom:"5px",
-                            marginLeft:"5px",
-                            marginRight:"10px",
-                            height:"78vh",
-                            color:"white",
+                            backgroundPosition: "center",
+                            height:"99vh",   
                             borderRadius: "10px",
+                            
                             
                         }}>
                         </Box>
 
 
                     </Grid>
-                    <Grid item xs={12} sm={12} lg={6}>
+                    {/* formulario */}
+                    
+                    <Grid item xs={12} sm={12} lg={6}
+                    style={{
+                        display:"flex",
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}
+                    >
 
                     <Box
                     style={{
-                        backgroundSize: "cover",
-                        height: "50hv",
+
+                        height: "92vh",
+                        width: "65vh",
                         minHeight: "430px",
-                        backgroundColor: "#4a5568",
-                        marginTop:"5px",
-                        marginBottom:"5px",
-                        marginRight:"10px",
+                        backgroundColor: "white",
                         borderRadius: "10px",
                          }}
                     > 
@@ -94,8 +98,8 @@ export default function Register() {
                     <Container>
                          <Box height={20} />
                          <Box sx={center}>
-                            <Typography component="h1" variant="h4" sx={{ color: "#E43434",mx: "auto" }}>
-                                Sig Up
+                            <Typography component="h1" variant="h6" sx={{ color: "#E43434",fontWeight: "bold" }}>
+                                Registration Form
                             </Typography>
                         </Box>
                         <Box height={10}/>
@@ -112,7 +116,14 @@ export default function Register() {
                         label="Nombre"
                         name="Nombre"
                         autoComplete="Nombre"
-                                
+                        color="error"
+                        sx={{
+                            "& label": { color: "gray" }, // Color del label en estado normal
+                            "& .MuiInput-underline:before": { borderBottomColor: "gray" }, // Color del border bottom en estado normal
+                            // También puedes personalizar el border cuando está en hover o focus
+                            "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "gray" },
+                            "& .MuiInputBase-input": { color: "#676767" } // Color del texto que escribe el usuario
+                          }}
                                 
     />
 </Grid>
@@ -129,6 +140,14 @@ export default function Register() {
                         name="email"
                         autoComplete="email"
                         type="email"
+                        color="error"
+                        sx={{
+                            "& label": { color: "gray" }, // Color del label en estado normal
+                            "& .MuiInput-underline:before": { borderBottomColor: "gray" }, // Color del border bottom en estado normal
+                            // También puedes personalizar el border cuando está en hover o focus
+                            "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "gray" },
+                            "& .MuiInputBase-input": { color: "#676767" } // Color del texto que escribe el usuario  
+                        }}
     />
 </Grid>
 
@@ -143,6 +162,14 @@ export default function Register() {
                         name="phone"
                         autoComplete="tel"
                         type="tel"
+                        color="error"
+                        sx={{
+                            "& label": { color: "gray" }, // Color del label en estado normal
+                            "& .MuiInput-underline:before": { borderBottomColor: "gray" }, // Color del border bottom en estado normal
+                            // También puedes personalizar el border cuando está en hover o focus
+                            "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "gray" },
+                            "& .MuiInputBase-input": { color: "#676767" } // Color del texto que escribe el usuario
+                          }}
     />
 </Grid>
 
@@ -157,6 +184,14 @@ export default function Register() {
                         name="password"
                         autoComplete="new-password"
                         type="password"
+                        color="error"
+                        sx={{
+                            "& label": { color: "gray" }, // Color del label en estado normal
+                            "& .MuiInput-underline:before": { borderBottomColor: "gray" }, // Color del border bottom en estado normal
+                            // También puedes personalizar el border cuando está en hover o focus
+                            "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "gray" },
+                            "& .MuiInputBase-input": { color: "#676767" } // Color del texto que escribe el usuario
+                          }}
     />
 </Grid>
 
@@ -172,6 +207,14 @@ export default function Register() {
                         name="confirmPassword"
                         autoComplete="new-password"
                         type="password"
+                        color="error"
+                        sx={{
+                            "& label": { color: "gray" }, // Color del label en estado normal
+                            "& .MuiInput-underline:before": { borderBottomColor: "gray" }, // Color del border bottom en estado normal
+                            // También puedes personalizar el border cuando está en hover o focus
+                            "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "gray" },
+                            "& .MuiInputBase-input": { color: "#676767" } // Color del texto que escribe el usuario
+                          }}
                         
                         />
                         </Grid>
@@ -193,6 +236,15 @@ export default function Register() {
                             
                             </Button>
                             </Grid>
+                        
+                            {/* <Box height={20} />
+                         <Box sx={center}>
+                            <Typography component="h5" variant="h7" sx={{ color: "grey"  }}>
+                            I have an Account?
+                            </Typography>
+                        </Box> */}
+
+                            
 
 
 
