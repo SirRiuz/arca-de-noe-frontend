@@ -94,18 +94,21 @@ export default function Register() {
                     <Container>
                          <Box height={20} />
                          <Box sx={center}>
-                            <Typography component="h1" variant="h4">
-                                Sig Up 
+                            <Typography component="h1" variant="h4" sx={{ color: "#E43434",mx: "auto" }}>
+                                Sig Up
                             </Typography>
                         </Box>
                         <Box height={10}/>
 
+                     {/* Campo del nombre */}
+
                         <Grid container spacing={1}>
-                    <Grid item xs={8} sx={{ ml: "1.5em", mr: "1.5em",  height: "2em", mb:"1em"}}>
+                    <Grid item xs={8} sx={{ ml: "1.5em", mr: "1.5em",  height: "2em", mb:"2em",mx: "auto" }}>
                          <TextField
                         required
+                        variant="standard"
                         fullWidth
-                        id="Nombre"
+                        id="standard-basic"
                         label="Nombre"
                         name="Nombre"
                         autoComplete="Nombre"
@@ -116,11 +119,12 @@ export default function Register() {
 
 
                             {/* Campo de correo electrónico */}
-                    <Grid item xs={8} sx={{ ml: "1.5em", mr: "1.5em", height: "2em", mb: "1em" }}>
+                    <Grid item xs={8} sx={{ ml: "1.5em", mr: "1.5em", height: "2em", mb: "2em",mx: "auto"  }}>
                         <TextField
                         required
-                        fullWidth
+                        variant="standard"
                         id="email"
+                        fullWidth
                         label="Correo electrónico"
                         name="email"
                         autoComplete="email"
@@ -129,9 +133,10 @@ export default function Register() {
 </Grid>
 
                             {/* Campo de número celular */}
-                    <Grid item xs={8} sx={{ ml: "1.5em", mr: "1.5em", height: "2em", mb: "1em" }}>
+                    <Grid item xs={8} sx={{ ml: "1.5em", mr: "1.5em", height: "2em", mb: "2em",mx: "auto"  }}>
                         <TextField
                         required
+                        variant="standard"
                         fullWidth
                         id="phone"
                         label="Número celular"
@@ -142,9 +147,10 @@ export default function Register() {
 </Grid>
 
                             {/* Campo de contraseña */}
-                    <Grid item xs={8} sx={{ ml: "1.5em", mr: "1.5em", height: "2em", mb: "2em" }}>
+                    <Grid item xs={8} sx={{ ml: "1.5em", mr: "1.5em", height: "2em", mb: "2em",mx: "auto"  }}>
                         <TextField
                         required
+                        variant="standard"
                         fullWidth
                         id="password"
                         label="Contraseña"
@@ -156,17 +162,40 @@ export default function Register() {
 
                      {/* Campo de verificación de contraseña */}
                      
-                     <Grid item xs={8} sx={{ ml: "1.5em", mr: "1.5em", height: "2em", mb: "1em" }}>
+                     <Grid item xs={8} sx={{ ml: "1.5em", mr: "1.5em", height: "2em", mb: "2em", mx: "auto"  }}>
                         <TextField
                         required
+                        variant="standard"
                         fullWidth
                         id="confirmPassword"
                         label="Confirmar contraseña"
                         name="confirmPassword"
                         autoComplete="new-password"
                         type="password"
-    />
-</Grid>
+                        
+                        />
+                        </Grid>
+                        <Grid container justifyContent="center">
+                        <Button
+                        type="submit"
+                        variant="contained"
+                        size="large"
+                        sx={{
+                            mt: "30px",
+                            mr: "40px",
+                            color: "#ffffff",
+                            minWidth: "150px",
+                            backgroundColor: "#E43434",
+                             mx: "auto"
+                            }}
+                            >
+                            CREATE ACCOUNT
+                            
+                            </Button>
+                            </Grid>
+
+
+
 
                           
                             
