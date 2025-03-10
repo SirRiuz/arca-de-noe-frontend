@@ -86,7 +86,6 @@ export default function Register() {
 
                     <Box
                     style={{
-
                         height: "92vh",
                         width: "65vh",
                         minHeight: "430px",
@@ -96,8 +95,8 @@ export default function Register() {
                     > 
                     <ThemeProvider theme={darkTheme}>
                     <Container>
-                         <Box height={20} />
-                         <Box sx={center}>
+                         <Box  height={20} />
+                         <Box sx={{textAlign:'center'}}>
                             <Typography component="h1" variant="h6" sx={{ color: "#E43434",fontWeight: "bold" }}>
                                 Registration Form
                             </Typography>
@@ -106,8 +105,8 @@ export default function Register() {
 
                      {/* Campo del nombre */}
 
-                        <Grid container spacing={1}>
-                    <Grid item xs={8} sx={{ ml: "1.5em", mr: "1.5em",  height: "2em", mb:"2em",mx: "auto" }}>
+                        <Grid container spacing={1} sx={{display:'flex', justifyContent:'center'}}>
+                    <Grid item xs={8} sx={{ ml: "1.5em", mr: "1.5em",  height: "2em", mb:"2em",mx: "auto",}}>
                          <TextField
                         required
                         variant="standard"
@@ -237,12 +236,18 @@ export default function Register() {
                             </Button>
                             </Grid>
                         
-                            {/* <Box height={20} />
-                         <Box sx={center}>
-                            <Typography component="h5" variant="h7" sx={{ color: "grey"  }}>
-                            I have an Account?
+                            <Box height={20} />
+
+                         <Box >
+
+                            <Typography component="h5" 
+                             sx={{ color: "grey", 
+                                   fontSize: "0.9rem",
+                                   mt: 3
+                                    }}>
+                            I have an Account? Sing in
                             </Typography>
-                        </Box> */}
+                        </Box>
 
                             
 
