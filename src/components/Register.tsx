@@ -5,18 +5,18 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { useNavigate } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
+import MuiAlert, { AlertProps} from "@mui/material/Alert";
 import { useState, forwardRef } from "react";
 import Snackbar from "@mui/material/Snackbar";
-import Stack from "@mui/material/Stack";
-import MuiAlert from "@mui/material/Alert";
-import Slide from "@mui/material/Slide";
-import { useNavigate } from "react-router-dom";
-import { red } from "@mui/material/colors";
+import Slide, {SlideProps} from "@mui/material/Slide";
+
+
+
+const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref){
+    return < MuiAlert elevation={6} ref={ref} variant="filled"{...props}/>;
+})
 
 const darkTheme = createTheme({
     palette: {
@@ -45,8 +45,45 @@ const center = {
 
 
 export default function Register() {
+    const navigate = useNavigate();
+    const vertical = "top";
+    const horizontal = "right";
+    const [open, setOpen] = useState(false);
+
+
+    function TransitionLeft(props:SlideProps ){
+        return <Slide {...props} direction="left"/>
+    }
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        setOpen(true);
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+    }
+
+    const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === "clickaway"){
+            return;
+        }
+        setOpen(false);
+    };
+
     return(
         <>
+        <Snackbar
+        open= {open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        TransitionComponent={TransitionLeft}
+        anchorOrigin={{vertical, horizontal}}
+        >
+            <Alert onClose={handleClose} severity="error" sx= {{width:"100%"}} variant="filled" >
+                Failed! Enter correct username and password
+
+            </Alert>
+        </Snackbar>
+
+
+
         {/* contenedor rosado */}
         <div style={{
             backgroundColor:"#E9E9E9",
@@ -101,7 +138,20 @@ export default function Register() {
                                 Registration Form
                             </Typography>
                         </Box>
+                        <Box 
+                         component= "form"
+                         noValidate
+                         onSubmit={handleSubmit}
+                         sx={{mt: 2}}
+                         >
+                        </Box>
+
+
+
+
+
                         <Box height={10}/>
+
 
                      {/* Campo del nombre */}
 
@@ -245,7 +295,15 @@ export default function Register() {
                                    fontSize: "0.9rem",
                                    mt: 3
                                     }}>
-                            I have an Account? Sing in
+                            I have an Account?
+                            <span
+                                    style={{ color: "#E43434", cursor: "pointer" }}
+                                    onClick={() => {
+                                        navigate("/Login");
+                                    }}
+                                    >
+                                         Sing in
+                                    </span>
                             </Typography>
                         </Box>
 
