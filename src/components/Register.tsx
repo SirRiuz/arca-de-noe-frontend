@@ -167,11 +167,10 @@ export default function Register() {
                         autoComplete="Nombre"
                         color="error"
                         sx={{
-                            "& label": { color: "gray" }, // Color del label en estado normal
-                            "& .MuiInput-underline:before": { borderBottomColor: "gray" }, // Color del border bottom en estado normal
-                            // También puedes personalizar el border cuando está en hover o focus
+                            "& label": { color: "gray" },
+                            "& .MuiInput-underline:before": { borderBottomColor: "gray" }, 
                             "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "gray" },
-                            "& .MuiInputBase-input": { color: "#676767" } // Color del texto que escribe el usuario
+                            "& .MuiInputBase-input": { color: "#676767" } 
                           }}
                                 
     />
