@@ -220,6 +220,8 @@ export default function Register() {
                                                        sx={{
                                                            "& label": { color: "gray" },
                                                            "& .MuiInput-underline:before": { borderBottomColor: "gray" },
+                                                           "& .MuiInput-underline:after": { borderBottomColor: "#380303" }, // Borde cuando está enfocado
+
                                                            "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "gray" },
                                                            "& .MuiInputBase-input": { color: "#676767" }
                                                        }}
