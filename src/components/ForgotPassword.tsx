@@ -38,13 +38,10 @@ const boxstyle ={
 
 }
 
-const center = {
-    textAlign:'center'
-};
 
 
 
-export default function Login() {
+export default function  ForgotPassword() {
     const navigate = useNavigate();
     return(
         <>
@@ -87,46 +84,24 @@ export default function Login() {
 
                     <Box
                     style={{
-                        height: "92vh",
+                        height: "50vh",
                         width: "65vh",
-                        minHeight: "430px",
                         backgroundColor: "white",
                         borderRadius: "10px",
+                        padding: "20px",
                          }}
                     > 
                     <ThemeProvider theme={darkTheme}>
                     <Container>
-                         <Box  height={20} />
+                         <Box  height={10} />
                          <Box sx={{textAlign:'center'}}>
-                            <Typography component="h1" variant="h6" sx={{ color: "#E43434",fontWeight: "bold" }}>
-                                Sign Up
-                            </Typography>
+                         <Typography component="h1" variant="h6" sx={{ color: "#E43434", fontWeight: "bold", textAlign: "center" }}>
+                    Recuperar Contraseña
+                  </Typography>
                         </Box>
                         <Box height={10}/>
 
-                     {/* Campo del nombre */}
-
-                        <Grid container spacing={1} sx={{display:'flex', justifyContent:'center'}}>
-                    <Grid item xs={8} sx={{ ml: "1.5em", mr: "1.5em",  height: "2em", mb:"2em",mx: "auto",}}>
-                         <TextField
-                        required
-                        variant="standard"
-                        fullWidth
-                        id="standard-basic"
-                        label="Nombre"
-                        name="Nombre"
-                        autoComplete="Nombre"
-                        color="error"
-                        sx={{
-                            "& label": { color: "gray" }, // Color del label en estado normal
-                            "& .MuiInput-underline:before": { borderBottomColor: "gray" }, // Color del border bottom en estado normal
-                            // También puedes personalizar el border cuando está en hover o focus
-                            "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "gray" },
-                            "& .MuiInputBase-input": { color: "#676767" } // Color del texto que escribe el usuario
-                          }}
-                                
-    />
-</Grid>
+                    
 
 
                             {/* Campo de correo electrónico */}
@@ -151,108 +126,44 @@ export default function Login() {
     />
 </Grid>
 
-                            {/* Campo de contraseña */}
-                    <Grid item xs={8} sx={{ ml: "1.5em", mr: "1.5em", height: "2em", mb: "2em",mx: "auto"  }}>
-                        <TextField
-                        required
-                        variant="standard"
-                        fullWidth
-                        id="password"
-                        label="Contraseña"
-                        name="password"
-                        autoComplete="new-password"
-                        type="password"
-                        color="error"
-                        sx={{
-                            "& label": { color: "gray" }, // Color del label en estado normal
-                            "& .MuiInput-underline:before": { borderBottomColor: "gray" }, // Color del border bottom en estado normal
-                            // También puedes personalizar el border cuando está en hover o focus
-                            "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "gray" },
-                            "& .MuiInputBase-input": { color: "#676767" } // Color del texto que escribe el usuario
-                          }} />
-</Grid>                         {/* BOTÓN DE OLVIDAR CONTRASEÑA  */}
-
-                    <Grid item xs={12} sx={{ ml: "3em", mr: "3em" }}>
-                        <Stack direction="row" spacing={2}>
-                        <Typography
-                        variant="body1"
-                        component="span"
-                        onClick={() => {
-                        navigate("/reset-password");
-                    }}
-                    style={{ marginTop: "10px", cursor: "pointer", color:"#E43434" }}
+                      {/* Botón para recuperar contraseña */}
+                  <Grid container justifyContent="center">
+                    <Button
+                      variant="contained"
+                      sx={{
+                        mt: "20px",
+                        color: "#ffffff",
+                        backgroundColor: "#E43434",
+                        Width: "100px",
+                      }}
                     >
-                        Forgot password?
-                        </Typography>
-                        </Stack>
-                        </Grid>
+                      Enviar enlace de recuperación
+                    </Button>
+                  </Grid>
 
 
-              
-                        <Grid container justifyContent="center">
-                        <Button
-                        type="submit"
-                        variant="contained"
-                        size="large"
-                        sx={{
-                            mt: "30px",
-                            mr: "40px",
-                            color: "#ffffff",
-                            minWidth: "150px",
-                            backgroundColor: "#E43434",
-                             mx: "auto"
-                            }}
-                            >
-                            Sign Up
-                            
-                            </Button>
-                            </Grid>
-                        
-                            <Box height={20} />
 
-                          
-                            {/* BOTON DE CREAR NUEVA CUENTA  */}
-                            <Grid container justifyContent="center">
-                        <Button
-                        type="submit"
-                        variant="contained"
-                        size="large"
-                        sx={{
-                            mt: "30px",
-                            mr: "40px",
-                            color: "#ffffff",
-                            minWidth: "150px",
-                            backgroundColor: "#E43434",
-                             mx: "auto"
-                            }}
-                            >
-                            Create new account
-                            
-                            </Button>
-                            </Grid>
-
-
-                          
-                            
-                        </Grid>
-
-                    
-
-                        </Container>
-                         </ThemeProvider>
 
   
-                    </Box>
 
-
-                    </Grid>
-
-                </Grid>
-
-            </Box>
-        </div>
-        
-        
+                  {/* Botón para volver al inicio de sesión */}
+                  <Grid container justifyContent="center">
+                    <Typography
+                      variant="body1"
+                      component="span"
+                      onClick={() => navigate("/login")}
+                      style={{ marginTop: "20px", cursor: "pointer", color: "#E43434", textAlign: "center" }}
+                    >
+                      Volver al inicio de sesión
+                    </Typography>
+                  </Grid>
+                </Container>
+            </ThemeProvider>
+        </Box>
+ </Grid>
+</Grid>
+</Box>
+        </div>  
         </>
     )
 }

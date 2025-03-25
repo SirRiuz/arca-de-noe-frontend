@@ -87,7 +87,7 @@ export default function Login() {
 
                     <Box
                     style={{
-                        height: "92vh",
+                        height: "50vh",
                         width: "65vh",
                         minHeight: "430px",
                         backgroundColor: "white",
@@ -107,26 +107,7 @@ export default function Login() {
                      {/* Campo del nombre */}
 
                         <Grid container spacing={1} sx={{display:'flex', justifyContent:'center'}}>
-                    <Grid item xs={8} sx={{ ml: "1.5em", mr: "1.5em",  height: "2em", mb:"2em",mx: "auto",}}>
-                         <TextField
-                        required
-                        variant="standard"
-                        fullWidth
-                        id="standard-basic"
-                        label="Nombre"
-                        name="Nombre"
-                        autoComplete="Nombre"
-                        color="error"
-                        sx={{
-                            "& label": { color: "gray" }, // Color del label en estado normal
-                            "& .MuiInput-underline:before": { borderBottomColor: "gray" }, // Color del border bottom en estado normal
-                            // También puedes personalizar el border cuando está en hover o focus
-                            "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "gray" },
-                            "& .MuiInputBase-input": { color: "#676767" } // Color del texto que escribe el usuario
-                          }}
-                                
-    />
-</Grid>
+
 
 
                             {/* Campo de correo electrónico */}
@@ -202,6 +183,7 @@ export default function Login() {
                             backgroundColor: "#E43434",
                              mx: "auto"
                             }}
+                            onClick={() => navigate("/")}
                             >
                             Sign Up
                             
@@ -221,9 +203,7 @@ export default function Login() {
                                         Not registered yet?{" "}
                                     <span
                                     style={{ color: "#E43434", cursor: "pointer" }}
-                                    onClick={() => {
-                                        navigate("/register");
-                                    }}
+                                    
                                     >
                                         Create an Account
                                     </span>
