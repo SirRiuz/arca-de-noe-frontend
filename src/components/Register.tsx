@@ -10,7 +10,6 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import { useState, forwardRef } from "react";
 import Snackbar from "@mui/material/Snackbar";
-import Slide, { SlideProps } from "@mui/material/Slide";
 
 import "./Register.css";
 
