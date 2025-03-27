@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
-  background: #114f3c;
+  background: #red;
 `;
 
 export const DogImage = styled.img`

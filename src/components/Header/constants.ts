@@ -1,24 +1,17 @@
 import { TabsType } from "./types";
 
 export const TABS: TabsType[] = [
+ 
   {
-    label: "Discover",
-    route: "/",
-  },
-  {
-    label: "Product Reviewer",
-    route: "/product",
-  },
-  {
-    label: "Medications",
+    label: "Sobre nosotros",
     route: "/medications",
   },
   {
-    label: "Other Pets",
+    label: "Contacto",
     route: "/other",
   },
   {
-    label: "About Us",
+    label: "Tienda",
     route: "/about",
   },
 ];

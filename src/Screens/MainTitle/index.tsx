@@ -18,18 +18,18 @@ export default function MainTitle(): JSX.Element {
       <MainSection>
         <div style={{ display: "flex", gap: "25px", height: 70 }}>
           <TitleWrapper>
-            <Title>PUPPY</Title>
+            <Title>AQUI</Title>
           </TitleWrapper>
           <DogIconWrapper>
             <DogIcon src={dog} height={80} />
           </DogIconWrapper>
         </div>
         <TitleWrapper>
-          <Title>ADVENTURES</Title>
+          <Title>A TUS MASCOTAS</Title>
         </TitleWrapper>
         <div style={{ display: "flex", height: 70, gap: "25px" }}>
           <TitleWrapper>
-            <Title>INDOOR</Title>
+            <Title>CUIDARE</Title>
           </TitleWrapper>
           <div style={{ transform: "rotate(15deg)" }}>
             <img src={heart} height={70} />
@@ -37,10 +37,12 @@ export default function MainTitle(): JSX.Element {
         </div>
       </MainSection>
       <Subtitle>
-        Explore Fun Indoor Activities To Enjoy With Your Dog During Chilly
-        Winter Days.
+      En nuestra clínica, tu mascota recibe el mismo amor y cuidado que en casa, 
+      porque su bienestar es nuestra mayor recompensa.
       </Subtitle>
       <BookButton />
+
+      
     </Container>
   );
 }

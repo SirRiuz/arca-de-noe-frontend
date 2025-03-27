@@ -6,7 +6,7 @@ export function BookButton(): JSX.Element {
   return (
     <Container>
       <Wrapper>
-        <strong>Book a Schedule</strong>
+        <strong>Agendar cita</strong>
         <div style={{ width: 0.5, height: 10, background: "white" }} />
         <DogIcon src={IconDog} />
       </Wrapper>

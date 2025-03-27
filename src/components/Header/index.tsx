@@ -1,4 +1,5 @@
 import { JSX } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router";
 import { Box } from "@mui/material";
 import { TABS } from "./constants";
@@ -15,6 +16,7 @@ import Item from "./Item";
 import Logo from "../../assets/logo.png";
 
 export default function Header(): JSX.Element {
+  const navigate = useNavigate();
   return (
     <Container container justifyContent={"center"} style={{ height: 75 }}>
       <Wrapper container>
@@ -38,7 +40,9 @@ export default function Header(): JSX.Element {
               }}
             >
               <Link to={"/"}>
-                <LogoImg src={Logo} />
+              
+                <LogoImg src={Logo} 
+                />
               </Link>
             </IconWrapper>
             <Content
@@ -55,20 +59,44 @@ export default function Header(): JSX.Element {
             </Content>
             <Box
               sx={{
+                display:'flex',
                 justifyContent: "center",
                 alignContent: "center",
+                color:"white"
               }}
             >
               <Box
                 sx={{
-                  display: "flex",
-                  alignContent: "center",
-                  background: "#F2A202",
+                  background: "#E43434",
                   padding: "10px",
-                  borderRadius: 100,
+                  margin:"10px",
+                  borderRadius: 10,
+                  height:"30px"
                 }}
               >
-                <strong>Login</strong>
+                <span
+                  style={{ color: "#FFFFFF", cursor: "pointer" }}
+                  onClick={() => {
+                    navigate("/Login")
+                }}>Iniciar sesión</span>
+              </Box>
+              <Box
+                sx={{
+                  background: "#E43434",
+                  padding: "10px",
+                  margin:"10px",
+                  borderRadius: 10,
+                  width:"65px",
+                  height:"30px"
+                }}
+              >
+                <span
+                style={{ color: "#FFFFFF", cursor: "pointer" }}
+                onClick={() => {
+                  navigate("/Register")
+              }}
+                >Registro</span>
+                
               </Box>
             </Box>
           </AppBar>

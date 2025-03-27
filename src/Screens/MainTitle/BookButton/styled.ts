@@ -17,7 +17,7 @@ export const DogIcon = styled.img`
 export const Container = styled.div`
   border-radius: 100px;
   border: none;
-  background: #f2a300;
+  background: #3472E4;
   color: white;
   display: flex;
   justify-content: center;

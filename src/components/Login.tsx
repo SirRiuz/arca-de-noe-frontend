@@ -86,7 +86,7 @@ export default function Login() {
             return;
         }
 
-        // Validación de credenciales (ejemplo simplificado)
+        // Validación de credenciales
         if (email === 'usuario@ejemplo.com' && password === 'contraseña123') {
             navigate("/");
         } else {
