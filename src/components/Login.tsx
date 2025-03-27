@@ -98,7 +98,6 @@ export default function Login() {
                             >
                                 <ThemeProvider theme={darkTheme}>
                                     <Container>
-                                        <Box height={20} />
                                         <Box sx={{ textAlign: 'center' }}>
                                             <Typography component="h1" variant="h6" sx={{ color: "#F67A84", fontWeight: "bold" }}>
                                                 Iniciar Sesión
