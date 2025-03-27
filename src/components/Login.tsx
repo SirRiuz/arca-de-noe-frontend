@@ -17,6 +17,7 @@ import MuiAlert from "@mui/material/Alert";
 import Slide from "@mui/material/Slide";
 import { useNavigate } from "react-router-dom";
 import { red } from "@mui/material/colors";
+import "./Login.css";
 
 const darkTheme = createTheme({
     palette: {
@@ -86,6 +87,7 @@ export default function Login() {
                         >
 
                             <Box
+                                id="LoginContainer"
                                 style={{
                                     height: "50vh",
                                     width: "65vh",

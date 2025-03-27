@@ -1,3 +1,9 @@
 #ignore_justusingtomodifycolors{
     background-color: #d33542;
 }
+
+#LoginContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
