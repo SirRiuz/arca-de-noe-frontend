@@ -10,10 +10,6 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import MuiAlert, { AlertProps} from "@mui/material/Alert";
 import { useState, forwardRef } from "react";
 import Snackbar from "@mui/material/Snackbar";
-import Slide, {SlideProps} from "@mui/material/Slide";
-
-
-// ADDED: New import for validation
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 
@@ -42,11 +38,6 @@ const boxstyle ={
 
 }
 
-
-
-
-
-
 export default function Register() {
     const navigate = useNavigate();
     const vertical = "top";
@@ -62,7 +53,8 @@ export default function Register() {
        Nombre: yup
            .string()
            .required('Nombre es requerido')
-           .min(2, 'Nombre debe tener al menos 2 caracteres'),
+           .min(2, 'Nombre debe tener al menos 2 caracteres')
+           .matches(/^[a-zA-Z0-9 ]*$/, 'Solo caracteres alfanuméricos'),
        email: yup
            .string()
            .email('Correo electrónico inválido')
@@ -70,7 +62,8 @@ export default function Register() {
        phone: yup
            .string()
            .required('Número de celular es requerido')
-           .matches(/^[0-9]{10}$/, 'Número de celular debe tener 10 dígitos'),
+           .matches(/^[0-9]{10}$/, 'Número de celular debe tener 10 dígitos')
+           .matches(/^3/, 'El número ingresado debe iniciar en 3'),
        password: yup
            .string()
            .required('Contraseña es requerida')
@@ -81,62 +74,60 @@ export default function Register() {
            .required('Confirmar contraseña es requerido')
    });
 
-   // ADDED: Formik for form handling and validation
    const formik = useFormik({
-       initialValues: {
-           Nombre: '',
-           email: '',
-           phone: '',
-           password: '',
-           confirmPassword: ''
-       },
-       validationSchema: validationSchema,
-       onSubmit: async (values) => {
-           try {
-               // ADDED: Simulated registration logic 
-               // In a real app, you would call your backend API here
-               console.log('Registration values:', values);
-               
-               // Show success message
-               setOpenSuccess(true);
+    initialValues: {
+        Nombre: '',
+        email: '',
+        phone: '',
+        password: '',
+        confirmPassword: ''
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+        try {
+            console.log('Registration values:', values);
+            setOpenSuccess(true);
+            setTimeout(() => {
+                navigate("/Login");
+            }, 3000);
+        } catch (error) {
+            setOpenError(true);
+        }
+    }
+});
+    // Función personalizada para manejar el blur y mostrar errores
+    const handleField = (fieldName: string) => {
+        formik.setFieldTouched(fieldName, true);
+        formik.validateField(fieldName);
+    };
 
-               // Optional: Navigate to login or dashboard after 3 seconds
-               setTimeout(() => {
-                   navigate("/Login");
-               }, 3000);
-           } catch (error) {
-               // Show error message if registration fails
-               setOpenError(true);
-           }
-       }
-   });
 
    // MODIFIED: Handle both error and success message closings
    const handleErrorClose = (event: React.SyntheticEvent | Event, reason?: string) => {
-       if (reason === "clickaway") {
-           return;
-       }
-       setOpenError(false);
-   };
+    if (reason === "clickaway") {
+        return;
+    }
+    setOpenError(false);
+};
 
-   const handleSuccessClose = (event: React.SyntheticEvent | Event, reason?: string) => {
-       if (reason === "clickaway") {
-           return;
-       }
-       setOpenSuccess(false);
-   };
+
+const handleSuccessClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === "clickaway") {
+        return;
+    }
+    setOpenSuccess(false);
+};
 
    return (
        <>
-           {/* ERROR Snackbar */}
-           <Snackbar
+        <Snackbar
                open={openError}
                autoHideDuration={3000}
                onClose={handleErrorClose}
                anchorOrigin={{ vertical, horizontal }}
            >
                <Alert onClose={handleErrorClose} severity="error" sx={{ width: "100%" }} variant="filled">
-                   Failed! Enter correct username and password
+               ¡Error! Ingrese su nombre de usuario y contraseña correctos.
                </Alert>
            </Snackbar>
 
@@ -148,7 +139,7 @@ export default function Register() {
                anchorOrigin={{ vertical, horizontal }}
            >
                <Alert onClose={handleSuccessClose} severity="success" sx={{ width: "100%" }} variant="filled">
-                   Account Created Successfully!
+               ¡Cuenta creada exitosamente!
                </Alert>
            </Snackbar>
 
@@ -190,7 +181,7 @@ export default function Register() {
                                        <Box height={20} />
                                        <Box sx={{ textAlign: 'center' }}>
                                            <Typography component="h1" variant="h6" sx={{ color: "#E43434", fontWeight: "bold" }}>
-                                               Registration Form
+                                               Formulario de registro
                                            </Typography>
                                        </Box>
 
@@ -202,7 +193,7 @@ export default function Register() {
                                            sx={{ mt: 2 }}
                                        >
                                            <Grid container spacing={1} sx={{ display: 'flex', justifyContent: 'center' }}>
-                                               {/* NOMBRE Field */}
+                                               {/* NOMBRE */}
                                                <Grid item xs={8} sx={{ ml: "1.5em", mr: "1.5em", height: "2em", mb: "2em", mx: "auto" }}>
                                                    <TextField
                                                        required
@@ -211,7 +202,6 @@ export default function Register() {
                                                        id="Nombre"
                                                        label="Nombre"
                                                        name="Nombre"
-                                                       autoComplete="Nombre"
                                                        color="error"
                                                        value={formik.values.Nombre}
                                                        onChange={formik.handleChange}
@@ -226,7 +216,7 @@ export default function Register() {
                                                    />
                                                </Grid>
 
-                                               {/* EMAIL Field */}
+                                               {/* EMAIL*/}
                                                <Grid item xs={8} sx={{ ml: "1.5em", mr: "1.5em", height: "2em", mb: "2em", mx: "auto" }}>
                                                    <TextField
                                                        required
@@ -335,11 +325,11 @@ export default function Register() {
                                                            mt: "30px",
                                                            mr: "40px",
                                                            color: "#ffffff",
-                                                           minWidth: "150px",
+                                                           Width: "150px",
                                                            backgroundColor: "#E43434",
                                                            mx: "auto"
                                                        }}>
-                                                       CREATE ACCOUNT
+                                                       Registrar
                                                    </Button>
                                                </Grid>
 
@@ -373,5 +363,5 @@ export default function Register() {
                </Box>
            </div>
        </>
-   )
+   ) 
 }
