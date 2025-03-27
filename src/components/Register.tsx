@@ -278,7 +278,8 @@ export default function Register() {
                                                         label="Número celular"
                                                         name="phone"
                                                         autoComplete="tel"
-                                                        type="tel"
+                                                        type="number"
+                                                        
                                                         color="error"
                                                         value={formik.values.phone}
                                                         onChange={formik.handleChange}
@@ -291,10 +292,13 @@ export default function Register() {
                                                             "& .MuiInputBase-input": { color: "#676767" },
                                                             "& .MuiInput-underline:after": { borderBottomColor: "#b65c64" }, // Borde cuando está enfocado
                                                             "& .MuiInputLabel-root.Mui-focused": { color: "#b65c64" }, // Color del label cuando está enfocado
-                                                            "& .MuiFormHelperText-root": { fontSize: "0.56rem" , color: "#d33542" }, // Reducir tamaño del texto de ayuda
-
-
+                                                            "& .MuiFormHelperText-root": { fontSize: "0.56rem", color: "#d33542" }, // Reducir tamaño del texto de ayuda
+                                                            "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": { 
+                                                                display: "none" 
+                                                            }, // ✅ Corrección aquí
+                                                            "& input[type=number]": { MozAppearance: "textfield" }, // Oculta flechas en Firefox
                                                         }}
+                                    
                                                     />
                                                 </Grid>
 
