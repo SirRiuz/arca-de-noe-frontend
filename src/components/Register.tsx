@@ -163,7 +163,7 @@ export default function Register() {
                 anchorOrigin={{ vertical, horizontal }}
             >
                 <Alert onClose={handleSuccessClose} severity="success" sx={{ width: "100%" }} variant="filled">
-                    Account Created Successfully!
+                    Cuenta Creada Con Éxito
                 </Alert>
             </Snackbar>
 
