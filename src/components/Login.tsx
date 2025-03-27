@@ -148,7 +148,7 @@ export default function Login() {
                                         <Box height={20} />
                                         <Box sx={{ textAlign: 'center' }}>
                                             <Typography component="h1" variant="h6" sx={{ color: "#E43434", fontWeight: "bold" }}>
-                                                Sign Up
+                                                Iniciar sesión
                                             </Typography>
                                         </Box>
                                         <Box height={10} />
@@ -260,7 +260,7 @@ export default function Login() {
                                                         }}
                                                         style={{ marginTop: "10px", cursor: "pointer", color: "#E43434", fontSize: "0.9rem" }}
                                                     >
-                                                        Forgot password?
+                                                        ¿Has olvidado tu contraseña?
                                                     </Typography>
                                                 </Stack>
                                             </Grid>
@@ -281,7 +281,7 @@ export default function Login() {
                                                     }}
                                                     onClick={handleLogin}
                                                 >
-                                                    Sign Up
+                                                    Iniciar sesión
                                                 </Button>
                                             </Grid>
 
@@ -294,11 +294,11 @@ export default function Login() {
                                                         component="h5"
                                                         style={{ marginTop: "10px", color: "#808080", fontSize: "0.9rem" }}
                                                     >
-                                                        Not registered yet?{" "}
+                                                        ¿Aún no estás registrado?{" "}
                                                         <span
                                                             style={{ color: "#E43434", cursor: "pointer" }}
                                                         >
-                                                            Create an Account
+                                                            Crear una cuenta
                                                         </span>
                                                     </Typography>
                                                 </Stack>
