@@ -63,7 +63,9 @@ export default function Register() {
         Nombre: yup
             .string()
             .required('Nombre es requerido')
-            .min(2, 'Nombre debe tener al menos 2 caracteres'),
+            .min(2, 'Nombre debe tener al menos 2 caracteres')
+            .matches(/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]+$/, 'El nombre solo puede contener letras, números y espacios'),
+
         email: yup
             .string()
             .email('Correo electrónico inválido')
@@ -191,7 +193,7 @@ export default function Register() {
                                 <ThemeProvider theme={darkTheme}>
                                     <Container className="RegisContainer">
                                         <Box sx={{ textAlign: 'center' }}>
-                                            <Typography component="h1" variant="h6" sx={{ color: "#F67A84", fontWeight: "bold" }}>
+                                            <Typography component="h1" variant="h6" sx={{ color: "#F67A84", fontWeight: "bold", userSelect:"none" }}>
                                                 Formulario de Registro
                                             </Typography>
                                         </Box>
@@ -226,7 +228,7 @@ export default function Register() {
                                                             "& .MuiInput-underline:before": { borderBottomColor: "gray" },
                                                             "& .MuiInput-underline:after": { borderBottomColor: "#b65c64" }, // Borde cuando está enfocado
                                                             "& .MuiInputLabel-root.Mui-focused": { color: "#b65c64" }, // Color del label cuando está enfocado
-                                                            "& .MuiFormHelperText-root": { fontSize: "0.56rem" }, // Reducir tamaño del texto de ayuda
+                                                            "& .MuiFormHelperText-root": { fontSize: "0.56rem" , color: "#d33542" }, // Reducir tamaño del texto de ayuda
 
                                                             "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "gray" },
                                                             "& .MuiInputBase-input": { color: "#676767" },
@@ -257,7 +259,7 @@ export default function Register() {
                                                             "& .MuiInput-underline:before": { borderBottomColor: "gray" },
                                                             "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "gray" },
                                                             "& .MuiInputBase-input": { color: "#676767" },
-                                                            "& .MuiFormHelperText-root": { fontSize: "0.56rem" }, // Reducir tamaño del texto de ayuda
+                                                            "& .MuiFormHelperText-root": { fontSize: "0.56rem" , color: "#d33542"  }, // Reducir tamaño del texto de ayuda
 
                                                             "& .MuiInput-underline:after": { borderBottomColor: "#b65c64" }, // Borde cuando está enfocado
                                                             "& .MuiInputLabel-root.Mui-focused": { color: "#b65c64" }, // Color del label cuando está enfocado
@@ -289,7 +291,7 @@ export default function Register() {
                                                             "& .MuiInputBase-input": { color: "#676767" },
                                                             "& .MuiInput-underline:after": { borderBottomColor: "#b65c64" }, // Borde cuando está enfocado
                                                             "& .MuiInputLabel-root.Mui-focused": { color: "#b65c64" }, // Color del label cuando está enfocado
-                                                            "& .MuiFormHelperText-root": { fontSize: "0.56rem" }, // Reducir tamaño del texto de ayuda
+                                                            "& .MuiFormHelperText-root": { fontSize: "0.56rem" , color: "#d33542" }, // Reducir tamaño del texto de ayuda
 
 
                                                         }}
@@ -318,7 +320,7 @@ export default function Register() {
                                                             "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "gray" },
                                                             "& .MuiInputBase-input": { color: "#676767" },
                                                             "& .MuiInput-underline:after": { borderBottomColor: "#b65c64" }, // Borde cuando está enfocado
-                                                            "& .MuiFormHelperText-root": { fontSize: "0.56rem" }, // Reducir tamaño del texto de ayuda
+                                                            "& .MuiFormHelperText-root": { fontSize: "0.56rem" , color: "#d33542" }, // Reducir tamaño del texto de ayuda
 
                                                             "& .MuiInputLabel-root.Mui-focused": { color: "#b65c64" }, // Color del label cuando está enfocado
 
@@ -345,7 +347,7 @@ export default function Register() {
                                                         sx={{
                                                             "& label": { color: "gray" },
                                                             "& .MuiInput-underline:before": { borderBottomColor: "gray" },
-                                                            "& .MuiFormHelperText-root": { fontSize: "0.56rem" }, // Reducir tamaño del texto de ayuda
+                                                            "& .MuiFormHelperText-root": { fontSize: "0.56rem" , color: "#d33542" }, // Reducir tamaño del texto de ayuda
 
                                                             "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "gray" },
                                                             "& .MuiInputBase-input": { color: "#676767" },
@@ -386,7 +388,7 @@ export default function Register() {
                                                         }}>
                                                         ¿Ya tienes una cuenta? 
                                                         <span
-                                                            style={{ color: "#E43434", cursor: "pointer" }}
+                                                            style={{ color: "#F67A84", cursor: "pointer" }}
                                                             onClick={() => {
                                                                 navigate("/Login");
                                                             }}
