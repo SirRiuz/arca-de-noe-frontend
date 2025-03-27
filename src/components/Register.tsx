@@ -63,7 +63,6 @@ export default function Register() {
         Nombre: yup
             .string()
             .required('Nombre es requerido')
-            .min(2, 'Nombre debe tener al menos 2 caracteres')
             .matches(/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]+$/, 'El nombre solo puede contener letras, números y espacios'),
 
         email: yup
