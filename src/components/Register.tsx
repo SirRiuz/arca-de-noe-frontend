@@ -8,7 +8,7 @@ import Container from "@mui/material/Container";
 import { useNavigate } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
-import { useState, forwardRef } from "react";
+import React, { useState, forwardRef } from "react";
 import Snackbar from "@mui/material/Snackbar";
 import Slide, { SlideProps } from "@mui/material/Slide";
 
@@ -17,6 +17,8 @@ import "./Register.css";
 // ADDED: New import for validation
 import * as yup from 'yup';
 import { useFormik } from 'formik';
+import { FormControl, FormHelperText, IconButton, Input, InputAdornment, InputLabel, OutlinedInput } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
@@ -52,8 +54,18 @@ export default function Register() {
     const navigate = useNavigate();
     const vertical = "top";
     const horizontal = "right";
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [showPassword, setShowPassword] = React.useState(false);
 
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
 
+    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+    };
+
+    const handleMouseUpPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+    };
     // MODIFIED: Added state for both error and success messages
     const [openError, setOpenError] = useState(false);
     const [openSuccess, setOpenSuccess] = useState(false);
@@ -72,7 +84,8 @@ export default function Register() {
         phone: yup
             .string()
             .required('Número de celular es requerido')
-            .matches(/^3[0-9]{9}$/, 'Número de celular debe empezar por 3 y tener 10 dígitos'),
+            .matches(/^3/, "El número de celular debe empezar por 3") // Verifica solo el primer dígito
+            .matches(/^\d{10}$/, "El número de celular debe tener 10 dígitos"),
             
         password: yup
             .string()
@@ -192,11 +205,11 @@ export default function Register() {
                                 <ThemeProvider theme={darkTheme}>
                                     <Container className="RegisContainer">
                                         <Box sx={{ textAlign: 'center' }}>
-                                            <Typography component="h1" variant="h6" sx={{ color: "#F67A84", fontWeight: "bold", userSelect:"none" }}>
+                                            <Typography component="h1" variant="h6" sx={{ color: "#F67A84", fontWeight: "bold", userSelect: "none" }}>
                                                 Formulario de Registro
                                             </Typography>
                                         </Box>
-                                        
+
 
 
                                         {/* MODIFIED: Replace form with Formik form */}
@@ -227,7 +240,7 @@ export default function Register() {
                                                             "& .MuiInput-underline:before": { borderBottomColor: "gray" },
                                                             "& .MuiInput-underline:after": { borderBottomColor: "#b65c64" }, // Borde cuando está enfocado
                                                             "& .MuiInputLabel-root.Mui-focused": { color: "#b65c64" }, // Color del label cuando está enfocado
-                                                            "& .MuiFormHelperText-root": { fontSize: "0.56rem" , color: "#d33542" }, // Reducir tamaño del texto de ayuda
+                                                            "& .MuiFormHelperText-root": { fontSize: "0.56rem", color: "#d33542" }, // Reducir tamaño del texto de ayuda
 
                                                             "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "gray" },
                                                             "& .MuiInputBase-input": { color: "#676767" },
@@ -258,7 +271,7 @@ export default function Register() {
                                                             "& .MuiInput-underline:before": { borderBottomColor: "gray" },
                                                             "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "gray" },
                                                             "& .MuiInputBase-input": { color: "#676767" },
-                                                            "& .MuiFormHelperText-root": { fontSize: "0.56rem" , color: "#d33542"  }, // Reducir tamaño del texto de ayuda
+                                                            "& .MuiFormHelperText-root": { fontSize: "0.56rem", color: "#d33542" }, // Reducir tamaño del texto de ayuda
 
                                                             "& .MuiInput-underline:after": { borderBottomColor: "#b65c64" }, // Borde cuando está enfocado
                                                             "& .MuiInputLabel-root.Mui-focused": { color: "#b65c64" }, // Color del label cuando está enfocado
@@ -277,11 +290,14 @@ export default function Register() {
                                                         label="Número celular"
                                                         name="phone"
                                                         autoComplete="tel"
-                                                        type="number"
-                                                        
+                                                        type="text"
+
                                                         color="error"
                                                         value={formik.values.phone}
-                                                        onChange={formik.handleChange}
+                                                        onChange={(e) => {
+                                                            const value = e.target.value.replace(/\D/g, ""); // ❌ Elimina todo lo que no sea número
+                                                            formik.setFieldValue("phone", value);
+                                                        }}                                                        
                                                         error={formik.touched.phone && Boolean(formik.errors.phone)}
                                                         helperText={formik.touched.phone && formik.errors.phone}
                                                         sx={{
@@ -292,74 +308,83 @@ export default function Register() {
                                                             "& .MuiInput-underline:after": { borderBottomColor: "#b65c64" }, // Borde cuando está enfocado
                                                             "& .MuiInputLabel-root.Mui-focused": { color: "#b65c64" }, // Color del label cuando está enfocado
                                                             "& .MuiFormHelperText-root": { fontSize: "0.56rem", color: "#d33542" }, // Reducir tamaño del texto de ayuda
-                                                            "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": { 
-                                                                display: "none" 
+                                                            "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": {
+                                                                display: "none"
                                                             }, // ✅ Corrección aquí
                                                             "& input[type=number]": { MozAppearance: "textfield" }, // Oculta flechas en Firefox
                                                         }}
-                                    
+
                                                     />
                                                 </Grid>
 
                                                 {/* PASSWORD Field */}
+
+
                                                 <Grid item xs={8} sx={{ ml: "1.5em", mr: "1.5em", height: "2em", mb: "2.4em", mx: "auto" }}>
-                                                    <TextField
-                                                        required
-                                                        variant="standard"
-                                                        fullWidth
-                                                        id="password"
-                                                        label="Contraseña"
-                                                        name="password"
-                                                        autoComplete="new-password"
-                                                        type="password"
-                                                        color="error"
-                                                        value={formik.values.password}
-                                                        onChange={formik.handleChange}
-                                                        error={formik.touched.password && Boolean(formik.errors.password)}
-                                                        helperText={formik.touched.password && formik.errors.password}
+                                                    <FormControl fullWidth variant="standard" error={formik.touched.password && Boolean(formik.errors.password)}
                                                         sx={{
                                                             "& label": { color: "gray" },
                                                             "& .MuiInput-underline:before": { borderBottomColor: "gray" },
                                                             "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "gray" },
                                                             "& .MuiInputBase-input": { color: "#676767" },
+                                                            "& .MuiFormHelperText-root": { fontSize: "0.56rem", color: "#d33542" }, // Reducir tamaño del texto de ayuda
                                                             "& .MuiInput-underline:after": { borderBottomColor: "#b65c64" }, // Borde cuando está enfocado
-                                                            "& .MuiFormHelperText-root": { fontSize: "0.56rem" , color: "#d33542" }, // Reducir tamaño del texto de ayuda
-
                                                             "& .MuiInputLabel-root.Mui-focused": { color: "#b65c64" }, // Color del label cuando está enfocado
-
-                                                        }}
-                                                    />
+                                                        }}>
+                                                        <InputLabel htmlFor="password">Contraseña</InputLabel>
+                                                        <Input
+                                                            id="password"
+                                                            name="password"
+                                                            type={showPassword ? "text" : "password"}
+                                                            value={formik.values.password}
+                                                            onChange={formik.handleChange}
+                                                            disableUnderline={false} // ✅ Esto permite que solo haya línea inferior
+                                                            endAdornment={
+                                                                <InputAdornment position="end">
+                                                                    <IconButton onClick={() => setShowPassword(!showPassword)} edge="end"
+                                                                        sx={{ color: "#676767" }}>
+                                                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                                    </IconButton>
+                                                                </InputAdornment>
+                                                            }
+                                                        />
+                                                        <FormHelperText>{formik.touched.password && formik.errors.password}</FormHelperText>
+                                                    </FormControl>
                                                 </Grid>
 
                                                 {/* CONFIRM PASSWORD Field */}
                                                 <Grid item xs={8} sx={{ ml: "1.5em", mr: "1.5em", height: "2em", mb: "2.4em", mx: "auto" }}>
-                                                    <TextField
-                                                        required
-                                                        variant="standard"
-                                                        fullWidth
-                                                        id="confirmPassword"
-                                                        label="Confirmar contraseña"
-                                                        name="confirmPassword"
-                                                        autoComplete="new-password"
-                                                        type="password"
-                                                        color="error"
-                                                        value={formik.values.confirmPassword}
-                                                        onChange={formik.handleChange}
-                                                        error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
-                                                        helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
+                                                    <FormControl fullWidth variant="standard" error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
                                                         sx={{
                                                             "& label": { color: "gray" },
                                                             "& .MuiInput-underline:before": { borderBottomColor: "gray" },
-                                                            "& .MuiFormHelperText-root": { fontSize: "0.56rem" , color: "#d33542" }, // Reducir tamaño del texto de ayuda
-
                                                             "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "gray" },
                                                             "& .MuiInputBase-input": { color: "#676767" },
+                                                            "& .MuiFormHelperText-root": { fontSize: "0.56rem", color: "#d33542" }, // Reducir tamaño del texto de ayuda
                                                             "& .MuiInput-underline:after": { borderBottomColor: "#b65c64" }, // Borde cuando está enfocado
                                                             "& .MuiInputLabel-root.Mui-focused": { color: "#b65c64" }, // Color del label cuando está enfocado
-
-                                                            
-                                                        }}
-                                                    />
+                                                        }}>
+                                                        <InputLabel htmlFor="confirmPassword">Confirmar contraseña</InputLabel>
+                                                        <Input
+                                                            id="confirmPassword"
+                                                            name="confirmPassword"
+                                                            type={showConfirmPassword ? "text" : "password"}
+                                                            value={formik.values.confirmPassword}
+                                                            onChange={formik.handleChange}
+                                                            disableUnderline={false} // ✅ Línea inferior en vez de borde
+                                                            endAdornment={
+                                                                <InputAdornment position="end">
+                                                                    <IconButton
+                                                                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                                                        edge="end"
+                                                                        sx={{ color: "#676767" }}>
+                                                                        {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                                                                    </IconButton>
+                                                                </InputAdornment>
+                                                            }
+                                                        />
+                                                        <FormHelperText>{formik.touched.confirmPassword && formik.errors.confirmPassword}</FormHelperText>
+                                                    </FormControl>
                                                 </Grid>
 
                                                 <Grid container justifyContent="center">
@@ -367,7 +392,7 @@ export default function Register() {
                                                         type="submit"
                                                         variant="contained"
                                                         size="large"
-                                                        
+
                                                         sx={{
                                                             mt: "30px",
                                                             mr: "40px",
@@ -389,7 +414,7 @@ export default function Register() {
                                                             fontSize: "0.9rem",
                                                             mt: 3
                                                         }}>
-                                                        ¿Ya tienes una cuenta? 
+                                                        ¿Ya tienes una cuenta?
                                                         <span
                                                             style={{ color: "#F67A84", cursor: "pointer" }}
                                                             onClick={() => {
