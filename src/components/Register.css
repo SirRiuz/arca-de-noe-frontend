@@ -3,7 +3,3 @@
     flex-direction: column;
     justify-content: center;
 }
-
-#outlined-adornment-password{
-    z-index: 99;
-}
