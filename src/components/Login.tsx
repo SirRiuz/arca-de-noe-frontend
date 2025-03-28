@@ -33,8 +33,9 @@ const boxstyle = {
     transform: "translate(-50%, -50%)",
     width: "99vw",
     height: "99vh",
-    bgcolor: "#E9E9E",
+    bgcolor: "#E9E9E9",
     boxShadow: 24,
+
     borderRadius: "20px",
 
 }
@@ -47,13 +48,16 @@ const center = {
 
 export default function Login() {
     const navigate = useNavigate();
+    document.body.style.backgroundColor = "#E9E9E9";
+
     return (
-        <>
+        <div id="MainContainerOfLogin">
             {/* contenedor rosado */}
             <div style={{
                 backgroundColor: "#E9E9E9",
                 backgroundImage: "cover",
                 height: "100vh",
+                
 
             }}
             >
@@ -69,6 +73,7 @@ export default function Login() {
                                     backgroundPosition: "center",
                                     height: "99vh",
                                     borderRadius: "10px",
+                                    backgroundColor: "#E9E9E9"
 
 
                                 }}>
@@ -238,6 +243,6 @@ export default function Login() {
             </div>
 
 
-        </>
+        </div>
     )
 }
