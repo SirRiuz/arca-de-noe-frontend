@@ -1,4 +1,4 @@
-import { JSX } from "react";
+import { JSX, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Screens/Home";
 
@@ -9,6 +9,7 @@ import { Container } from "@mui/material";
 
 
 function App(): JSX.Element {
+  
   return (
     <BrowserRouter>
 
