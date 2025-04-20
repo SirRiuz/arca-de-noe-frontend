@@ -15,11 +15,14 @@ import {
 import Item from "./Item";
 import Logo from "../../assets/logo.png";
 
+
+
 export default function Header(): JSX.Element {
   const navigate = useNavigate();
+  
   return (
-    <Container container justifyContent={"center"} style={{ height: 75 }}>
-      <Wrapper container>
+    <Container container justifyContent={"center"} style={{ height: 75}}>
+      <Wrapper container style={{boxShadow: "1px 1px 5px #000000"}}>
         <AppBarWrapper>
           <AppBar
             justifyContent={{
@@ -70,12 +73,15 @@ export default function Header(): JSX.Element {
                   background: "#E43434",
                   padding: "10px",
                   margin:"10px",
-                  borderRadius: 10,
+                  borderRadius: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignContent: "center",
                   height:"30px"
                 }}
               >
                 <span
-                  style={{ color: "#FFFFFF", cursor: "pointer" }}
+                  style={{ color: "#FFFFFF", cursor: "pointer", paddingTop: "2px" }}
                   onClick={() => {
                     navigate("/Login")
                 }}>Iniciar sesión</span>
@@ -85,13 +91,15 @@ export default function Header(): JSX.Element {
                   background: "#E43434",
                   padding: "10px",
                   margin:"10px",
-                  borderRadius: 10,
-                  width:"65px",
+                  borderRadius: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignContent: "center",                  width:"65px",
                   height:"30px"
                 }}
               >
                 <span
-                style={{ color: "#FFFFFF", cursor: "pointer" }}
+                style={{ color: "#FFFFFF", cursor: "pointer" , paddingTop: "2px"}}
                 onClick={() => {
                   navigate("/Register")
               }}
