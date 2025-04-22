@@ -6,8 +6,10 @@ import MainTitle from "../MainTitle";
 import { Container, DogImage } from "./styled";
 
 export default function Home(): JSX.Element {
+  document.body.style.backgroundColor = "#114F3C";
+
   return (
-    <Container >
+    <Container>
       <Header />
       <Grid container sx={{ marginTop: "30px" }}>
         <Grid container size={5} alignContent={"center"}>
