@@ -296,6 +296,9 @@ export default function Login() {
                                                         ¿Aún no estás registrado?{" "}
                                                         <span
                                                             style={{ color: "#E43434", cursor: "pointer" }}
+                                                            onClick={() => {
+                                                                navigate("/Register");
+                                                            }}
                                                         >
                                                             Regístrate
                                                         </span>

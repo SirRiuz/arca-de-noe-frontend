@@ -342,14 +342,14 @@ const handleSuccessClose = (event: React.SyntheticEvent | Event, reason?: string
                                                            fontSize: "0.9rem",
                                                            mt: 3
                                                        }}>
-                                                       I have an Account?
+                                                       ¿Tienes una cuenta?
                                                        <span
                                                            style={{ color: "#E43434", cursor: "pointer" }}
                                                            onClick={() => {
                                                                navigate("/Login");
                                                            }}
                                                        >
-                                                           Sing in
+                                                           Inicia sesión
                                                        </span>
                                                    </Typography>
                                                </Box>
