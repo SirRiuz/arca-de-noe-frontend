@@ -1,3 +1,6 @@
+import { useAppContext } from "../AppContext"; // Ajusta la ruta si es distinta
+
+
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import bg from "./bg/love-animals.jpg";
@@ -26,6 +29,8 @@ const darkTheme = createTheme({
 });
 
 
+
+
 const boxstyle = {
     position: "absolute",
     top: "50%",
@@ -49,7 +54,20 @@ const center = {
 export default function Login() {
     const navigate = useNavigate();
     document.body.style.backgroundColor = "#E9E9E9";
-
+    const { login } = useAppContext();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState<string | null>(null);
+    
+    const handleLogin = async () => {
+        try {
+          await login(email, password);
+          navigate("/"); // Redirigir después del login exitoso
+        } catch (err) {
+          setError("Credenciales inválidas o error del servidor.");
+        }
+      };
+    
     return (
         <div id="MainContainerOfLogin">
             {/* contenedor rosado */}
@@ -125,6 +143,8 @@ export default function Login() {
                                                     fullWidth
                                                     label="Correo electrónico"
                                                     name="email"
+                                                    onChange={(e) => setEmail(e.target.value)}
+                                                    value={email}
                                                     autoComplete="email"
                                                     type="email"
                                                     color="error"
@@ -149,6 +169,8 @@ export default function Login() {
                                                     id="password"
                                                     label="Contraseña"
                                                     name="password"
+                                                    value={password}
+                                                    onChange={(e) => setPassword(e.target.value)}
                                                     autoComplete="new-password"
                                                     type="password"
                                                     color="error"
@@ -185,6 +207,7 @@ export default function Login() {
                                                     type="submit"
                                                     variant="contained"
                                                     size="large"
+
                                                     sx={{
                                                         mt: "30px",
                                                         mr: "40px",
@@ -193,7 +216,7 @@ export default function Login() {
                                                         backgroundColor: "#F67A84",
                                                         mx: "auto"
                                                     }}
-                                                    onClick={() => navigate("/")}
+                                                    onClick={handleLogin}
                                                 >
                                                     Ingresa
 

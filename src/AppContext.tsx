@@ -1,21 +1,29 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
+// Tipo para el usuario
 type User = {
   id: number;
   name: string;
   email: string;
 };
 
+// Tipo para el contexto
 type AppContextType = {
   isAuthenticated: boolean;
   user: User | null;
   login: (username: string, password: string) => Promise<void>;
   logout: () => void;
   register: (username: string, email: string, password1: string, password2: string) => Promise<void>;
-  isLoggedIn: () => boolean; // Función para verificar si el usuario está autenticado
+  isLoggedIn: () => boolean;
 };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
+
+// Función para obtener una cookie por nombre
+function getCookie(name: string): string | null {
+  const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+  return match ? match[2] : null;
+}
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -27,72 +35,74 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
-  // Función para verificar si el usuario está logueado
-  const isLoggedIn = () => {
-    return !!user;
-  };
+  const isLoggedIn = () => !!user;
 
-  // Login function with fetch
   const login = async (username: string, password: string) => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/auth/login", {
+      const csrfToken = getCookie("csrftoken");
+
+      const response = await fetch("http://127.0.0.1:8000/api/auth/login/", { 
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "X-CSRFToken": csrfToken || "",
         },
+        credentials: "include",
         body: JSON.stringify({ username, password }),
       });
 
-      if (!response.ok) {
-        throw new Error("Login failed");
-      }
+      if (!response.ok) throw new Error("Login failed");
 
       const data = await response.json();
       setUser({ id: data.id, name: data.name, email: data.email });
-      localStorage.setItem("user", JSON.stringify({ id: data.id, name: data.name, email: data.email }));
+      localStorage.setItem("user", JSON.stringify(data));
     } catch (error) {
-      console.error(error);
+      console.error("Login error:", error);
     }
   };
 
-  // Logout function with fetch
   const logout = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/auth/logout", {
+      const csrfToken = getCookie("csrftoken");
+
+      const response = await fetch("http://127.0.0.1:8000/api/auth/logout/", {
         method: "POST",
+        headers: {
+          "X-CSRFToken": csrfToken || "",
+        },
+        credentials: "include",
       });
 
-      if (!response.ok) {
-        throw new Error("Logout failed");
-      }
+      if (!response.ok) throw new Error("Logout failed");
 
       setUser(null);
       localStorage.removeItem("user");
     } catch (error) {
-      console.error(error);
+      console.error("Logout error:", error);
     }
   };
 
-  // Register function with fetch
   const register = async (username: string, email: string, password1: string, password2: string) => {
     try {
+      const csrfToken = getCookie("csrftoken");
+
       const response = await fetch("http://127.0.0.1:8000/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "X-CSRFToken": csrfToken || "",
         },
+        credentials: "include",
         body: JSON.stringify({ username, email, password1, password2 }),
       });
 
-      if (!response.ok) {
-        throw new Error("Registration failed");
-      }
+      if (!response.ok) throw new Error("Registration failed");
 
       const data = await response.json();
       setUser({ id: data.id, name: data.name, email: data.email });
-      localStorage.setItem("user", JSON.stringify({ id: data.id, name: data.name, email: data.email }));
+      localStorage.setItem("user", JSON.stringify(data));
     } catch (error) {
-      console.error(error);
+      console.error("Registration error:", error);
     }
   };
 

@@ -22,7 +22,7 @@ export default function Header(): JSX.Element {
   
   return (
     <Container container justifyContent={"center"} style={{ height: 75}}>
-      <Wrapper container style={{boxShadow: "1px 1px 5px #000000"}}>
+      <Wrapper container style={{boxShadow: "1px 1px 5px rgba(0, 0, 0, 0.6)"}}>
         <AppBarWrapper>
           <AppBar
             justifyContent={{
