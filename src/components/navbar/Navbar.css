@@ -1,0 +1,211 @@
+/* Estilos generales */
+.navbar {
+  background-color: #ff5722;
+  color: white;
+  padding: 0.8rem 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  z-index: 1000;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 1.5rem;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.logo-icon {
+  font-size: 1.8rem;
+}
+
+.logo-text {
+  white-space: nowrap;
+}
+
+/* Barra de búsqueda */
+.search-bar {
+  flex: 1;
+  min-width: 250px;
+  max-width: 500px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  color: #777;
+  font-size: 1.2rem !important;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.6rem 1rem 0.6rem 2.5rem;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Menú superior derecho */
+.top-menu {
+  display: flex;
+
+  gap: 1rem;
+ /* background-color: red; */
+
+}
+
+.top-menu a {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: white;
+  text-decoration: none;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.menu-icon {
+  font-size: 1rem !important;
+}
+
+/* Menú principal */
+.main-menu {
+  background-color: rgb(255, 248, 248);
+  padding: 0.8rem 2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  z-index: 999;
+}
+
+.main-menu ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.main-menu li {
+  position: relative;
+}
+
+.main-menu a {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.3rem 0;
+  white-space: nowrap;
+}
+
+.main-menu a:hover {
+  color: #ff5722;
+}
+
+.main-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #ff5722;
+  transition: width 0.3s ease;
+}
+
+.main-menu a:hover::after {
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-wrap: wrap;
+    padding: 0.8rem;
+    gap: 1rem;
+  }
+  
+  .logo {
+    order: 1;
+  }
+  
+  .search-bar {
+    order: 3;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+  
+  .top-menu {
+    order: 2;
+    margin-left: auto;
+  }
+  
+  .main-menu ul {
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    padding: 0.5rem;
+  }
+  
+  .main-menu a {
+    font-size: 0.8rem;
+  }
+}
+
+
+/* Estilos del carrito */
+.top-menu {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.cart-icon {
+  color: white !important;
+  padding: 0.5rem !important;
+}
+
+.cart-icon .MuiBadge-badge {
+  top: 5px !important;
+  right: 5px !important;
+}
+
+/* Drawer del carrito */
+.MuiDrawer-paper {
+  background-color: #f9f9f9 !important;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cart-icon {
+    margin-left: auto;
+  }
+  
+  .top-menu a:not(:last-child) {
+    display: none;
+  }
+}
