@@ -104,8 +104,9 @@ export default function Login() {
                                 <ThemeProvider theme={darkTheme}>
                                     <Container>
                                         <Box sx={{ textAlign: 'center' }}>
-                                            <Typography component="h1" variant="h6" sx={{ color: "#F67A84", fontWeight: "bold" }}>
-                                                Iniciar Sesión
+
+                                            <Typography component="h1" variant="h6" sx={{ color: "#E43434", fontWeight: "bold" }}>
+                                                Iniciar sesión
                                             </Typography>
                                         </Box>
                                         <Box height={10} />
@@ -173,8 +174,9 @@ export default function Login() {
                                                         }}
                                                         style={{ marginTop: "10px", cursor: "pointer", color: "#F67A84", fontSize: "0.9rem" }}
                                                     >
-                                                        ¿Has olvidado tu contraseña?
+
                                                         ¿Olvidaste tu contraseña?
+
                                                     </Typography>
                                                 </Stack>
                                             </Grid>
@@ -190,6 +192,7 @@ export default function Login() {
                                                         mt: "30px",
                                                         mr: "40px",
                                                         color: "#ffffff",
+
                                                         minWidth: "150px",
                                                         backgroundColor: "#F67A84",
                                                         mx: "auto"
@@ -197,15 +200,14 @@ export default function Login() {
                                                     onClick={() => navigate("/")}
                                                 >
                                                     Iniciar sesión
-                                                    Ingresa
-
-                                                </Button>
+                                            </Button>
                                             </Grid>
 
                                             <Box height={20} />
 
 
-                                            {/* BOTON DE CREAR NUEVA CUENTA  */}
+                                            {/*  CREAR NUEVA CUENTA  */}
+
                                             <Grid container justifyContent="center" item xs={12} sx={{ ml: "1em", mr: "1em" }}>
                                                 <Stack spacing={2}>
                                                     <Typography
@@ -213,13 +215,18 @@ export default function Login() {
                                                         style={{ marginTop: "10px", color: "#808080", fontSize: "0.9rem" }}
                                                     >
                                                         ¿Aún no estás registrado?{" "}
-                                                        ¿Aún no te has registrado?{" "}
+
                                                         <span
-                                                            style={{ color: "#F67A84", cursor: "pointer" }}
-                                                            onClick={() => navigate("/register")} // <-- Aquí agregamos la redirección
+                                                            style={{ color: "#E43434", cursor: "pointer" }}
+                                                            onClick={() => {
+                                                                navigate("/Register");
+                                                            }}
                                                         >
+                                                            Regístrate
+
                                                             Crear una cuenta
                                                             Crea una cuenta
+
                                                         </span>
                                                     </Typography>
                                                 </Stack>
