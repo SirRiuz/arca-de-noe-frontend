@@ -8,7 +8,7 @@ export default function Item({ data }: ItemProps): JSX.Element {
     <Container>
       <Link
         to={data.route}
-        style={{ color: "#B1AE91", textDecoration: "none", fontSize: 16.5 }}
+        style={{ color: "#1f1e19", textDecoration: "none", fontSize: 16.5, fontWeight: 400 }}
       >
         <LabelWrapper>{data.label}</LabelWrapper>
       </Link>

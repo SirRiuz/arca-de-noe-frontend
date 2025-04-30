@@ -41,7 +41,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     try {
       const csrfToken = getCookie("csrftoken");
 
-      const response = await fetch("http://127.0.0.1:8000/api/auth/login/", { 
+      const response = await fetch("http://127.0.0.1:8000/api/login2/", { 
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -81,6 +81,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       console.error("Logout error:", error);
     }
   };
+
+  
 
   const register = async (username: string, email: string, password1: string, password2: string) => {
     try {

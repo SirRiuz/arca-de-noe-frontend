@@ -15,14 +15,16 @@ import {
 import Item from "./Item";
 import Logo from "../../assets/logo.png";
 
+import {useAppContext} from "../../AppContext";
 
 
 export default function Header(): JSX.Element {
   const navigate = useNavigate();
+  const { isAuthenticated, logout } = useAppContext();
   
   return (
-    <Container container justifyContent={"center"} style={{ height: 75}}>
-      <Wrapper container style={{boxShadow: "1px 1px 5px rgba(0, 0, 0, 0.6)"}}>
+    <Container container justifyContent={"center"} style={{ height: 75, width:"100vw" }}>
+      <Wrapper container style={{boxShadow: "1px 1px 5px rgba(1, 41, 10, 0.16)", backgroundColor:"#114F3C", border:"0px" ,borderRadius:"0px"}}>
         <AppBarWrapper>
           <AppBar
             justifyContent={{
@@ -65,51 +67,79 @@ export default function Header(): JSX.Element {
                 display:'flex',
                 justifyContent: "center",
                 alignContent: "center",
-                color:"white"
+                color:"white",
+                // padding: "10px",
+                // margin:"10px",
+                height: "100%",
+                // height:"30px",
               }}
             >
-              <Box
-                sx={{
-                  background: "#E43434",
-                  padding: "10px",
-                  margin:"10px",
-                  borderRadius: 1,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignContent: "center",
-                  height:"30px"
-                }}
-              >
-                <span
-                  style={{ color: "#FFFFFF", cursor: "pointer", paddingTop: "2px" }}
-                  onClick={() => {
-                    navigate("/Login")
-                }}>Iniciar sesión</span>
-              </Box>
-              <Box
-                sx={{
-                  background: "#E43434",
-                  padding: "10px",
-                  margin:"10px",
-                  borderRadius: 1,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignContent: "center",                  width:"65px",
-                  height:"30px"
-                }}
-              >
-                <span
-                style={{ color: "#FFFFFF", cursor: "pointer" , paddingTop: "2px"}}
-                onClick={() => {
-                  navigate("/Register")
-              }}
-                >Registro</span>
-                
-              </Box>
+
+                {isAuthenticated ? (
+                <>
+                  <span style={{ marginRight: "10px", display: "flex", alignItems: "center" }}>
+                    {/* Bienvenido, {user?.name} */}
+                    Bienvenido, user
+                  </span>
+                  <Box
+                    sx={{
+                      background: "#E43434",
+                      paddingLeft: "15px",
+                      paddingRight: "15px",  
+                      display: "flex", 
+                      alignItems: "center",
+                      justifyContent: "center", 
+               
+                      margin: "15px",
+                      borderRadius: 10,                      
+                      cursor: "pointer",
+                    }}
+                    onClick={logout}
+                  >
+                    Cerrar sesión
+                  </Box>
+                </>
+              ) : (
+                <>
+                  <Box
+                    sx={{
+                      background: "#009963",
+                      paddingLeft: "15px",
+                      paddingRight: "15px",                      
+                      justifyContent: "center", 
+                      alignItems: "center",
+                      display: "flex",
+                      margin: "15px",
+                      borderRadius: 10,
+                      cursor: "pointer",
+                    }}
+                    onClick={() => navigate("/Login")}
+                  >
+                    Iniciar sesión
+                  </Box>
+                  <Box
+                    sx={{
+                      background: "#F6EFE7",
+                      color: "black",
+                      paddingLeft: "10px",
+                      paddingRight: "10px",
+                      justifyContent: "center", 
+                      alignItems: "center",
+                      display: "flex",
+                      margin: "15px",
+                      borderRadius: 10,
+                      cursor: "pointer",
+                    }}
+                    onClick={() => navigate("/Register")}
+                  >
+                    Registrate
+                  </Box>
+                </>
+              )}
             </Box>
           </AppBar>
         </AppBarWrapper>
       </Wrapper>
     </Container>
   );
-}
+};

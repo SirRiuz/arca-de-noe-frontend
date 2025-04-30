@@ -13,7 +13,7 @@ import Avatar from "@mui/material/Avatar";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { useState, forwardRef } from "react";
+import { useState, forwardRef, useEffect } from "react";
 import Snackbar from "@mui/material/Snackbar";
 import Stack from "@mui/material/Stack";
 import MuiAlert from "@mui/material/Alert";
@@ -54,15 +54,20 @@ const center = {
 export default function Login() {
     const navigate = useNavigate();
     document.body.style.backgroundColor = "#E9E9E9";
-    const { login } = useAppContext();
+    const { login, isAuthenticated } = useAppContext();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+          navigate("/");
+        }
+      }, [isAuthenticated, navigate]);
     
     const handleLogin = async () => {
         try {
           await login(email, password);
-          navigate("/"); // Redirigir después del login exitoso
         } catch (err) {
           setError("Credenciales inválidas o error del servidor.");
         }
