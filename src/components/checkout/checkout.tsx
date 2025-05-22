@@ -83,7 +83,7 @@ export default function CheckoutPage() {
 
   const NequiPaymentDialog = () => {
     const nequiQrCode = `00020101021126170013Cr 54 # 38-095204729953031705802CO5925JHORJAN SNEYDER MARTINEZ 6015BARRANCABERMEJA6221021031047871550703CEL64350002ES0125JHORJAN SNEYDER MARTINEZ 92290012co.com.nequi0109P2P.NEQUI630423FA`;
-    const nequiPhoneNumber = '3104787155';
+    const nequiPhoneNumber = '3104889735';
     const whatsappMessage = `Quiero pagar $${subtotal} por productos para mascotas`;
 
     return (
